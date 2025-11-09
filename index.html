@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Journaling</title>
+  <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center p-6">
+
+  <h1 class="text-3xl font-bold text-gray-800 mb-8">📚 Journaling</h1>
+
+  <!-- Grid of Cards -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 max-w-7xl w-full">
+
+    <!-- Card Template -->
+    <button onclick="openModal('motivation')" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition transform hover:-translate-y-1 flex flex-col items-center text-center">
+      <i data-lucide="target" class="w-10 h-10 text-indigo-600 mb-3"></i>
+      <h2 class="text-xl font-semibold text-indigo-600 mb-2">Motivation</h2>
+      <p class="text-gray-700 text-sm">Stay consistent and trust your growth every single day.</p>
+    </button>
+
+    <button onclick="openModal('focus')" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition transform hover:-translate-y-1 flex flex-col items-center text-center">
+      <i data-lucide="focus" class="w-10 h-10 text-pink-600 mb-3"></i>
+      <h2 class="text-xl font-semibold text-pink-600 mb-2">Focus</h2>
+      <p class="text-gray-700 text-sm">Eliminate distractions and give your best to what matters most.</p>
+    </button>
+
+    <button onclick="openModal('learning')" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition transform hover:-translate-y-1 flex flex-col items-center text-center">
+      <i data-lucide="book-open" class="w-10 h-10 text-green-600 mb-3"></i>
+      <h2 class="text-xl font-semibold text-green-600 mb-2">Learning</h2>
+      <p class="text-gray-700 text-sm">Every mistake teaches something valuable — keep improving.</p>
+    </button>
+
+    <button onclick="openModal('health')" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition transform hover:-translate-y-1 flex flex-col items-center text-center">
+      <i data-lucide="heart-pulse" class="w-10 h-10 text-orange-500 mb-3"></i>
+      <h2 class="text-xl font-semibold text-orange-500 mb-2">Health</h2>
+      <p class="text-gray-700 text-sm">Balance your mind, body, and habits to build lasting energy.</p>
+    </button>
+
+    <button onclick="openModal('creativity')" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition transform hover:-translate-y-1 flex flex-col items-center text-center">
+      <i data-lucide="palette" class="w-10 h-10 text-blue-600 mb-3"></i>
+      <h2 class="text-xl font-semibold text-blue-600 mb-2">Creativity</h2>
+      <p class="text-gray-700 text-sm">Let curiosity guide you — new ideas come when you explore.</p>
+    </button>
+
+    <button onclick="openModal('gratitude')" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition transform hover:-translate-y-1 flex flex-col items-center text-center">
+      <i data-lucide="smile" class="w-10 h-10 text-yellow-500 mb-3"></i>
+      <h2 class="text-xl font-semibold text-yellow-500 mb-2">Gratitude</h2>
+      <p class="text-gray-700 text-sm">Be thankful for progress, not perfection — growth takes time.</p>
+    </button>
+
+  </div>
+
+  <!-- Modal Background -->
+  <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white rounded-lg shadow-xl max-w-lg w-11/12 p-6 relative">
+      <button onclick="closeModal()" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div id="modal-content">
+        <!-- Dynamic modal content will be inserted here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    const modalData = {
+      motivation: {
+        title: "Motivation",
+        icon: "target",
+        color: "text-indigo-600",
+        text: `
+          <p class="text-gray-700 mb-3">Motivation is what drives you when excitement fades. 
+          It’s about showing up even when you don’t feel like it. Write down your goals and revisit them weekly. 
+          Reflect on what’s working — and what’s not.</p>
+          <p class="text-gray-600 text-sm italic">💡 Tip: End each day by writing one sentence about something you’re proud of accomplishing.</p>
+        `
+      },
+      focus: {
+        title: "Focus",
+        icon: "focus",
+        color: "text-pink-600",
+        text: `
+          <p class="text-gray-700 mb-3">Focus helps you turn intention into achievement. 
+          Avoid multitasking and set clear boundaries for your attention. The more present you are, the more meaningful your output becomes.</p>
+          <p class="text-gray-600 text-sm italic">🧘 Tip: Journal about the top 3 things you want to prioritize each morning.</p>
+        `
+      },
+      learning: {
+        title: "Learning",
+        icon: "book-open",
+        color: "text-green-600",
+        text: `
+          <p class="text-gray-700 mb-3">Learning never stops — every experience is a lesson in disguise. 
+          Record what you discover daily, whether from a challenge, a mistake, or a conversation.</p>
+          <p class="text-gray-600 text-sm italic">📚 Tip: Try a “What I learned today” journal prompt every evening.</p>
+        `
+      },
+      health: {
+        title: "Health",
+        icon: "heart-pulse",
+        color: "text-orange-500",
+        text: `
+          <p class="text-gray-700 mb-3">Your health supports your goals. Track how you feel physically and mentally, 
+          and note what habits improve your mood, focus, and sleep.</p>
+          <p class="text-gray-600 text-sm italic">🏃 Tip: Use your journal to spot patterns in stress, rest, and nutrition.</p>
+        `
+      },
+      creativity: {
+        title: "Creativity",
+        icon: "palette",
+        color: "text-blue-600",
+        text: `
+          <p class="text-gray-700 mb-3">Creativity flows when you let go of perfection. 
+          Use your journal as a space to brainstorm freely — sketch ideas, jot random thoughts, and let imagination lead.</p>
+          <p class="text-gray-600 text-sm italic">🎨 Tip: Try “free writing” for 10 minutes without editing or judging.</p>
+        `
+      },
+      gratitude: {
+        title: "Gratitude",
+        icon: "smile",
+        color: "text-yellow-500",
+        text: `
+          <p class="text-gray-700 mb-3">Gratitude shifts your focus from what’s missing to what’s meaningful. 
+          The more you recognize your blessings, the happier and calmer you become.</p>
+          <p class="text-gray-600 text-sm italic">🌞 Tip: Write 3 things you're grateful for before bed each night.</p>
+        `
+      },
+    };
+
+    function openModal(key) {
+      const data = modalData[key];
+      const modalContent = document.getElementById("modal-content");
+      modalContent.innerHTML = `
+        <div class="flex items-center mb-4">
+          <i data-lucide="${data.icon}" class="w-8 h-8 ${data.color} mr-2"></i>
+          <h2 class="text-2xl font-semibold ${data.color}">${data.title}</h2>
+        </div>
+        ${data.text}
+      `;
+      document.getElementById("modal").classList.remove("hidden");
+      lucide.createIcons();
+    }
+
+    function closeModal() {
+      document.getElementById("modal").classList.add("hidden");
+    }
+
+    // Close modal on background click
+    document.getElementById("modal").addEventListener("click", function(e) {
+      if (e.target === this) closeModal();
+    });
+  </script>
+
+</body>
+</html>
